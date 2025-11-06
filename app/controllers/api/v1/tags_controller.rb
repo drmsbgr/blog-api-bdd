@@ -1,5 +1,5 @@
 # app/controllers/api/v1/tags_controller.rb
-class Api::V1::TagsController < ApplicationController
+class Api::V1::TagsController < Api::ApiController
   before_action :set_tag, only: [:show, :update, :destroy]
 
   # GET /api/v1/tags

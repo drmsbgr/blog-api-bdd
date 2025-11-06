@@ -1,5 +1,5 @@
 # app/controllers/api/v1/posts_controller.rb
-class Api::V1::PostsController < ApplicationController
+class Api::V1::PostsController < Api::ApiController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /api/v1/posts
@@ -13,6 +13,7 @@ class Api::V1::PostsController < ApplicationController
   def show
     render json: @post.as_json(include: [:user, :comments, :tags])
   end
+  
 
   # POST /api/v1/posts
   def create

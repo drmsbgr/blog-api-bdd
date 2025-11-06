@@ -1,4 +1,4 @@
-class Api::V1::CommentsController < ApplicationController
+class Api::V1::CommentsController < Api::ApiController
   # index ve create için URL'den :post_id'yi alıp @post'u bul
   before_action :set_post, only: [:index, :create]
 

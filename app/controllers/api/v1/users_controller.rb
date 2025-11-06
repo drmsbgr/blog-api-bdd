@@ -1,5 +1,5 @@
 # app/controllers/api/v1/users_controller.rb
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::ApiController
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /api/v1/users

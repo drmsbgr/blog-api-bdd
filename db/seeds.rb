@@ -9,11 +9,12 @@
 #   end
 
 # db/seeds.rb
-puts "Veriler siliniyor..."
-User.destroy_all
-Post.destroy_all
-Comment.destroy_all
-Tag.destroy_all
+puts "Veritabanı temizleniyor ve ID sayaçları sıfırlanıyor..."
+
+# TRUNCATE komutu kayıtları siler ve RESTART IDENTITY ID sayaçlarını sıfırlar.
+# CASCADE, bu tablolara bağlı olan diğer tablolardaki ilgili kayıtları da siler.
+# Bu, foreign key hatalarını önler ve silme sırasını düşünme derdinden kurtarır.
+ActiveRecord::Base.connection.execute("TRUNCATE users, posts, tags, comments, post_tags RESTART IDENTITY CASCADE")
 
 puts "Veriler oluşturuluyor..."
 user1 = User.create!(name: "Ahmet", email: "ahmet@mail.com")
@@ -31,5 +32,6 @@ post2.tags << tag1
 
 post1.comments.create!(body: "Harika yazı!", user: user2)
 post2.comments.create!(body: "Katılıyorum.", user: user1)
+post2.comments.create!(body: "Ben de katılıyorum.", user: user2)
 
 puts "Veri oluşturma tamamlandı!"

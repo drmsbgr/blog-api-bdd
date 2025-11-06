@@ -1,0 +1,24 @@
+<!-- app/views/posts/show.html.erb -->
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+
+<h2>Yorumlar</h2>
+<div id="comments">
+  <% @post.comments.each do |comment| %>
+    <div class="comment">
+      <p class="comment-body"><%= comment.body %></p>
+      <p class="comment-author">Yazan: <%= comment.user.name %></p>
+    </div>
+  <% end %>
+</div>
+
+<h2>Yorum Ekle</h2>
+<%= form_with(model: [@post, Comment.new], id: 'new_comment') do |form| %>
+  <div class="field">
+    <%= form.label :body, "Yorum" %>
+    <%= form.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Yorum Ekle" %>
+  </div>
+<% end %>
